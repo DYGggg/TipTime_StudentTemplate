@@ -32,6 +32,7 @@ class MainActivity : ComponentActivity() {
             TipTimeTheme {
                 TipTimeLayout()
             }
+            //asdasdadsa
         }
     }
 }
