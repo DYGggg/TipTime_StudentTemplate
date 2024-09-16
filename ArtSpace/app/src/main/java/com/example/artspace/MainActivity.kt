@@ -5,17 +5,21 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableIntState
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.artspace.ui.theme.ArtSpaceTheme
 
@@ -33,7 +37,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TextDisplay(title: String, author: String, modifier: Modifier = Modifier) {
-
     Column(
         modifier = Modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -44,15 +47,23 @@ fun TextDisplay(title: String, author: String, modifier: Modifier = Modifier) {
     }
 }
 
-//@Composable
-//fun ImageDisplay() {
-//    var count by remember { mutableIntStateOf(1) }
-//    var image = when (count) {
-//        1 -> R.drawable
-//        else -> R.drawable
-//    }
-//}
-
+@Composable
+fun ImageWithText() {
+    var count by remember { mutableIntStateOf(1) }
+    var image = when (count) {
+        1 -> R.drawable
+        2 -> R.drawable
+        3 -> R.drawable
+        4 -> R.drawable
+        else -> R.drawable
+    }
+    Row(modifier = Modifier) {
+        Image(
+            painter = painterResource(image)
+        )
+        TextDisplay(title = "Hi", author = "Hello")
+    }
+}
 
 @Preview(
     showBackground = true,
@@ -61,6 +72,6 @@ fun TextDisplay(title: String, author: String, modifier: Modifier = Modifier) {
 @Composable
 fun ArtSpacePreview() {
     ArtSpaceTheme {
-        TextDisplay(title = "Hi", author = "Hello")
+        ImageWithText()
     }
 }
