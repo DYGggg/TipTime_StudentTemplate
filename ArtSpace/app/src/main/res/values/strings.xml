@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">ArtSpace</string>
+    <string-array name="building_name">
+        <item>Al Hamra</item>
+        <item>Burj Al Arab</item>
+        <item>Burj Khalifa</item>
+        <item>Canton Tower</item>
+        <item>Kingdom Centre</item>
+        <item>Lotte World Tower</item>
+        <item>Marina Bay Sands</item>
+        <item>Shanghai Tower</item>
+        <item>Space Needle</item>
+        <item>Transamerica Pyramid</item>
+    </string-array>
+    <string-array name="description">
+        <item>Kuwait City, Kuwait (2011)</item>
+        <item>Dubai, United Arab Emirates (1999)</item>
+        <item>Dubai, United Arab Emirates (2010)</item>
+        <item>Guangzhou, China (2010)</item>
+        <item>Riyadh, Saudi Arabia (2002)</item>
+        <item>Seoul, South Korea (2017)</item>
+        <item>Singapore (2010)</item>
+        <item>Shanghai, China (2015)</item>
+    </string-array>
 </resources>
