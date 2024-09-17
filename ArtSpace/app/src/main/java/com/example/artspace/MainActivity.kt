@@ -1,7 +1,7 @@
 package com.example.artspace
 
-import android.graphics.Paint.Align
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -9,19 +9,24 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableIntState
-import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.artspace.ui.theme.ArtSpaceTheme
+import androidx.compose.foundation.layout.*
+import androidx.compose.runtime.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +34,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ArtSpaceTheme {
-                TextDisplay(title = "Hi", author = "Hello")
+                DisplayEverything()
             }
         }
     }
@@ -48,20 +53,46 @@ fun TextDisplay(title: String, author: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ImageWithText() {
-    var count by remember { mutableIntStateOf(1) }
+fun DisplayEverything() {
+    var count by remember { mutableStateOf(1) }
+    var name: String = ""
+    var description: String = ""
     var image = when (count) {
-        1 -> R.drawable
-        2 -> R.drawable
-        3 -> R.drawable
-        4 -> R.drawable
-        else -> R.drawable
+        1 -> R.drawable.al_hamra
+        2 -> R.drawable.burj_al_arab
+        3 -> R.drawable.burj_khalifa
+        4 -> R.drawable.canton_tower
+        5 -> R.drawable.kingdom_centre
+        6 -> R.drawable.lotte_world_tower
+        7 -> R.drawable.marina_bay_sands
+        8 -> R.drawable.shanghai_tower
+        9 -> R.drawable.space_needle
+        else -> R.drawable.transamerica_pyramid
     }
     Row(modifier = Modifier) {
         Image(
-            painter = painterResource(image)
+            painter = painterResource(image),
+            contentDescription = null,
         )
-        TextDisplay(title = "Hi", author = "Hello")
+        Spacer(modifier = Modifier.width(16.dp))
+        TextDisplay(title = name, author = description)
+    }
+    Row(
+        modifier = Modifier.fillMaxSize(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+            Button(
+                onClick = { count += 1 },
+                modifier = Modifier.padding(8.dp)
+            ) {
+                Text(text = "Next")
+            }
+            Button(
+                onClick = { count -= 1 },
+                modifier = Modifier.padding(8.dp)
+            ) {
+                Text(text = "Previous")
+            }
     }
 }
 
@@ -72,6 +103,6 @@ fun ImageWithText() {
 @Composable
 fun ArtSpacePreview() {
     ArtSpaceTheme {
-        ImageWithText()
+        DisplayEverything()
     }
 }
