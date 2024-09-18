@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.example.artspace.ui.theme.ArtSpaceTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.res.stringArrayResource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,45 +56,100 @@ fun TextDisplay(title: String, author: String, modifier: Modifier = Modifier) {
 @Composable
 fun DisplayEverything() {
     var count by remember { mutableStateOf(1) }
-    var name: String = ""
-    var description: String = ""
-    var image = when (count) {
-        1 -> R.drawable.al_hamra
-        2 -> R.drawable.burj_al_arab
-        3 -> R.drawable.burj_khalifa
-        4 -> R.drawable.canton_tower
-        5 -> R.drawable.kingdom_centre
-        6 -> R.drawable.lotte_world_tower
-        7 -> R.drawable.marina_bay_sands
-        8 -> R.drawable.shanghai_tower
-        9 -> R.drawable.space_needle
-        else -> R.drawable.transamerica_pyramid
-    }
-    Row(modifier = Modifier) {
-        Image(
-            painter = painterResource(image),
-            contentDescription = null,
-        )
-        Spacer(modifier = Modifier.width(16.dp))
-        TextDisplay(title = name, author = description)
-    }
-    Row(
-        modifier = Modifier.fillMaxSize(),
-        horizontalArrangement = Arrangement.Center
-    ) {
-            Button(
-                onClick = { count += 1 },
-                modifier = Modifier.padding(8.dp)
-            ) {
-                Text(text = "Next")
-            }
-            Button(
-                onClick = { count -= 1 },
-                modifier = Modifier.padding(8.dp)
-            ) {
-                Text(text = "Previous")
-            }
-    }
+    val nameArray = stringArrayResource(R.array.building_name)
+    val descriptionArray = stringArrayResource(R.array.description)
+    var name: String = nameArray[count - 1]
+    var description: String = descriptionArray[count - 1]
+
+//    when(count){
+//        1 -> {
+//            name = nameArray [count - 1]
+//            description = descriptionArray[count - 1]
+//        }
+//        2 -> {
+//            name = nameArray [count - 1]
+//            description = descriptionArray[count - 1]
+//        }
+//        3 -> {
+//            name = nameArray [count - 1]
+//            description = descriptionArray[count - 1]
+//        }
+//        4 -> {
+//            name = nameArray [count - 1]
+//            description = descriptionArray[count - 1]
+//        }
+//        5 -> {
+//            name = nameArray [count - 1]
+//            description = descriptionArray[count - 1]
+//        }
+//        6 -> {
+//            name = nameArray [count - 1]
+//            description = descriptionArray[count - 1]
+//        }
+//        7 -> {
+//            name = nameArray [count - 1]
+//            description = descriptionArray[count - 1]
+//        }
+//        8 -> {
+//            name = nameArray [count - 1]
+//            description = descriptionArray[count - 1]
+//        }
+//        9 -> {
+//            name = nameArray [count - 1]
+//            description = descriptionArray[count - 1]
+//        }
+//        else -> {
+//            name = nameArray [count - 1]
+//            description = descriptionArray[count - 1]
+//        }
+//}
+
+var image = when (count) {
+    1 -> R.drawable.al_hamra
+    2 -> R.drawable.burj_al_arab
+    3 -> R.drawable.burj_khalifa
+    4 -> R.drawable.canton_tower
+    5 -> R.drawable.kingdom_centre
+    6 -> R.drawable.lotte_world_tower
+    7 -> R.drawable.marina_bay_sands
+    8 -> R.drawable.shanghai_tower
+    9 -> R.drawable.space_needle
+    else -> R.drawable.transamerica_pyramid
+}
+Row(modifier = Modifier) {
+    Image(
+        painter = painterResource(image),
+        contentDescription = null,
+    )
+    Spacer(modifier = Modifier.width(16.dp))
+    TextDisplay(title = name, author = description)
+}
+Row(
+modifier = Modifier.fillMaxSize(),
+horizontalArrangement = Arrangement.Center
+) {
+    //   Text(text = "text")
+//        Button(
+//            onClick = {
+//                count += 1
+//                if(count > 10){
+//                    count = 1
+//                }
+//                if(count < 1){
+//                    count = 10
+//                }
+//            },
+//            modifier = Modifier.padding(8.dp)
+//        ) {
+//            Text(text = "Next")
+//        }
+//        Button(
+//            onClick = { count -= 1 },
+//            modifier = Modifier.padding(8.dp)
+//        ) {
+//            Text(text = "Previous")
+//        }
+}
 }
 
 @Preview(
